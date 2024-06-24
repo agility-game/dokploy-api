@@ -1,1 +1,25 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.rule=Host(`agility-game.com`)"
+      - "traefik.http.routers.nginx.entrypoints=websecure"
+      - "traefik.http.routers.nginx.tls.certResolver=letsencrypt"
+      - "traefik.http.services.nginx.loadbalancer.server.port=8081"
+  whoami:
+    image: traefik/whoami
+    ports:
+      - "80"
+    networks:
+      - dokploy-network
 
+networks:
+  dokploy-network:
+    external: true
