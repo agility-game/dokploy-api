@@ -1,5 +1,5 @@
-repository-name
-# Repository Name
+dokploy-api
+# Dokploy API
 
 Based on "ABC" at https://www.abc.com/
 
