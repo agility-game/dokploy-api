@@ -13,8 +13,7 @@ services:
       - "traefik.http.routers.${HASH}.entrypoints=websecure"
       - "traefik.http.routers.${HASH}.tls.certResolver=letsencrypt"
       - "traefik.http.services.${HASH}.loadbalancer.server.port=${API_PORT}"
-    env_files:
-      - .env
+
   whoami:
     image: traefik/whoami
     ports:
